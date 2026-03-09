@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotografía de Naturaleza | Portfolio Profesional</title>
+    <meta name="description"
+        content="Portfolio fotográfico profesional de naturaleza, fauna, paisajes y macro. Descubre la belleza del mundo natural a través de mi lente.">
+    <!-- Google Fonts: Inter & Playfair Display for a premium look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dark-mode">
+    <div class="loader-wrapper" id="loader">
+        <div class="loader"></div>
+    </div>
+
+    <header id="main-header">
+        <nav class="container">
+            <div class="logo">
+                <a href="#hero">PHOTOGRAPHY</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#galleries" class="nav-link">Galerías</a></li>
+                <li><a href="#about" class="nav-link">Sobre Mí</a></li>
+                <li><a href="#contact" class="nav-link">Contacto</a></li>
+            </ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-image-overlay"></div>
+            <div class="hero-content container">
+                <h2 class="subtitle">Fotografía de Naturaleza</h2>
+                <h1 class="photographer-name">Gabriel Sierra</h1>
+                <p class="hero-desc">Capturando la esencia salvaje y la belleza efímera del mundo natural.</p>
+                <div class="hero-actions">
+                    <a href="#galleries" class="btn btn-primary">Explorar Galerías</a>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse"></div>
+                <span>Desliza</span>
+            </div>
+        </section>
+
+        <!-- Galleries Filter -->
+        <section id="galleries" class="galleries-section container">
+            <div class="section-header">
+                <h2>Mis Galerías</h2>
+                <div class="filter-wrapper">
+                    <div class="filter-controls">
+                        <button class="filter-btn active" data-filter="all">Todas</button>
+                        <button class="filter-btn" data-filter="aves">Aves</button>
+                        <button class="filter-btn" data-filter="fauna">Fauna</button>
+                        <button class="filter-btn" data-filter="paisajes">Paisajes</button>
+                        <button class="filter-btn" data-filter="macro">Macro</button>
+                        <button class="filter-btn" data-filter="urbana">Urbana</button>
+                    </div>
+                    <div class="search-box">
+                        <input type="text" id="photo-search" placeholder="Buscar fotografías...">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div id="gallery-grid" class="gallery-grid">
+                <!-- Dynamically populated by script.js -->
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">Sobre Mí</h2>
+                    <p>Soy un apasionado de la fotografía de naturaleza con más de 10 años de experiencia recorriendo
+                        rincones remotos para capturar momentos únicos. Mi trabajo se centra en el respeto a la fauna y
+                        la búsqueda de la luz perfecta.</p>
+                    <p>Especializado en fotografía de aves y macro, busco siempre mostrar detalles que pasan
+                        desapercibidos al ojo humano, creando una conexión íntima entre el espectador y la naturaleza.
+                    </p>
+                </div>
+                <!-- Placeholder for Image -->
+                <div class="about-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1554080353-a576cf803bda?auto=format&fit=crop&q=80&w=800"
+                        alt="Fotógrafo trabajando" class="premium-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section container">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Hablemos de tu próximo proyecto</h3>
+                    <p>Si estás interesado en adquirir copias, colaborar en proyectos o simplemente saludar, no dudes en
+                        escribirme.</p>
+                    <div class="info-item">
+                        <span class="label">Email:</span>
+                        <a href="mailto:info@gabrielsierra.com">info@gabrielsierra.com</a>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">Behance</a>
+                    </div>
+                </div>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Tu Nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Tu Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Tu Mensaje" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-submit">Enviar Mensaje</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 Gabriel Sierra Photography. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Admin Button -->
+    <button class="floating-admin-btn" id="open-admin-btn" title="Añadir nueva foto">
+        +
+    </button>
+
+    <!-- Admin Upload Modal -->
+    <div id="admin-modal" class="lightbox">
+        <button class="close-admin close-lightbox">&times;</button>
+        <div class="admin-content">
+            <h2 class="admin-title">Subir Nueva Foto</h2>
+            <form id="upload-form" class="upload-form">
+                <div class="drop-zone" id="drop-zone">
+                    <p class="drop-text">Arrastra y suelta tu foto aquí<br>o haz clic para seleccionar</p>
+                    <input type="file" id="image-input" name="image" accept="image/*" required hidden>
+                    <img id="image-preview" src="" alt="Vista previa" hidden>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <input type="text" name="title" placeholder="Título de la foto" required>
+                    </div>
+                    <div class="form-group">
+                        <select name="category" required>
+                            <option value="aves">Aves</option>
+                            <option value="fauna">Fauna</option>
+                            <option value="paisajes">Paisajes</option>
+                            <option value="macro">Macro</option>
+                            <option value="urbana">Urbana</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="location" placeholder="Ubicación (Ej: Costa Rica)" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="date" placeholder="Fecha (Ej: Marzo 2024)" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="camera" placeholder="Cámara (Ej: Sony A7IV)">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="lens" placeholder="Lente (Ej: 200-600mm)">
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <input type="text" name="settings" placeholder="Ajustes (Ej: f/6.3, 1/2000s, ISO 800)">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-submit" id="upload-submit-btn">Subir y Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <button class="close-lightbox">&times;</button>
+        <button class="prev-photo">&#10094;</button>
+        <button class="next-photo">&#10095;</button>
+
+        <div class="lightbox-content">
+            <div class="lightbox-image-container">
+                <img id="lightbox-img" src="" alt="Full image">
+            </div>
+            <div class="lightbox-details">
+                <h3 id="photo-title">Título de la Foto</h3>
+                <p id="photo-info"><span id="photo-location">Lugar</span> &bull; <span id="photo-date">Fecha</span></p>
+                <div class="exif-data">
+                    <div class="exif-item"><strong>Cámara:</strong> <span id="exif-camera">-</span></div>
+                    <div class="exif-item"><strong>Lente:</strong> <span id="exif-lens">-</span></div>
+                    <div class="exif-item"><strong>Ajustes:</strong> <span id="exif-settings">-</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
