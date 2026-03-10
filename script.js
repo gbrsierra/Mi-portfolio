@@ -138,39 +138,68 @@ document.addEventListener('DOMContentLoaded', () => {
         internalLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 const targetId = link.getAttribute('href').substring(1);
-                if (targetId && targetId !== 'hero' && targetId !== 'main-header') {
-                    // Si el link va a una sección, la mostramos
+
+                // Si el link es solo "#" o va a "hero" (inicio), reseteamos la vista
+                if (!targetId || targetId === 'hero' || targetId === 'main-header') {
+                    if (targetId === 'hero') e.preventDefault();
+                    resetToHome();
+                    return;
+                }
+
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    e.preventDefault();
                     showSection(targetId);
-                } else if (targetId === 'hero') {
-                    // Si clicamos en el logo o hero, podemos ocultar el resto si queremos un reset
-                    // Pero por ahora solo lo dejamos así.
                 }
             });
         });
     }
 
+    function resetToHome() {
+        document.body.classList.remove('content-visible');
+        const sections = document.querySelectorAll('section:not(#hero)');
+        sections.forEach(s => {
+            s.classList.remove('section-visible');
+            s.style.opacity = '0';
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        updateActiveNavLink('hero');
+    }
+
     function showSection(id) {
         const section = document.getElementById(id);
         if (section) {
-            // Hacemos visible el cuerpo para que aparezca el footer
             document.body.classList.add('content-visible');
-
-            // Ocultamos todas las secciones excepto hero
             const sections = document.querySelectorAll('section:not(#hero)');
             sections.forEach(s => {
-                s.classList.remove('section-visible');
+                if (s.id !== id) {
+                    s.classList.remove('section-visible');
+                    s.style.opacity = '0';
+                }
             });
 
-            // Mostramos la sección destino
             section.classList.add('section-visible');
-
-            // Forzar un pequeño reflow para que la transición de opacidad funcione
             setTimeout(() => {
                 section.style.opacity = '1';
-                // Scroll suave a la sección
                 section.scrollIntoView({ behavior: 'smooth' });
             }, 50);
+            updateActiveNavLink(id);
         }
+    }
+
+    function updateActiveNavLink(id) {
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href) {
+                const target = href.substring(1);
+                if (target === id) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            }
+        });
     }
 
     function filterPhotos(category, searchTerm) {
