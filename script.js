@@ -132,6 +132,45 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinks.classList.toggle('active');
             mobileMenu.classList.toggle('active');
         });
+
+        // Navigation for Section Visibility
+        const internalLinks = document.querySelectorAll('a[href^="#"]');
+        internalLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const targetId = link.getAttribute('href').substring(1);
+                if (targetId && targetId !== 'hero' && targetId !== 'main-header') {
+                    // Si el link va a una sección, la mostramos
+                    showSection(targetId);
+                } else if (targetId === 'hero') {
+                    // Si clicamos en el logo o hero, podemos ocultar el resto si queremos un reset
+                    // Pero por ahora solo lo dejamos así.
+                }
+            });
+        });
+    }
+
+    function showSection(id) {
+        const section = document.getElementById(id);
+        if (section) {
+            // Hacemos visible el cuerpo para que aparezca el footer
+            document.body.classList.add('content-visible');
+
+            // Ocultamos todas las secciones excepto hero
+            const sections = document.querySelectorAll('section:not(#hero)');
+            sections.forEach(s => {
+                s.classList.remove('section-visible');
+            });
+
+            // Mostramos la sección destino
+            section.classList.add('section-visible');
+
+            // Forzar un pequeño reflow para que la transición de opacidad funcione
+            setTimeout(() => {
+                section.style.opacity = '1';
+                // Scroll suave a la sección
+                section.scrollIntoView({ behavior: 'smooth' });
+            }, 50);
+        }
     }
 
     function filterPhotos(category, searchTerm) {

@@ -11,7 +11,8 @@ const portfolioData = {
         { id: "fauna", name: "Fauna" },
         { id: "paisajes", name: "Paisajes" },
         { id: "macro", name: "Macro" },
-        { id: "urbana", name: "Urbana" }
+        { id: "urbana", name: "Urbana" },
+        { id: "nocturnas", name: "Nocturnas" }
     ],
     /**
      * ARRAY DE FOTOS: Aquí es donde añades tus imágenes.

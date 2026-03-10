@@ -10,6 +10,7 @@
     --font-heading: 'Playfair Display', serif;
     --container-width: 1200px;
     --header-height: 80px;
+    --accent-burgundy: #800020;
 }
 
 * {
@@ -55,6 +56,26 @@ body {
     border-top-color: var(--text-primary);
     border-radius: 50%;
     animation: spin 1s linear infinite;
+}
+
+/* Visibilidad de secciones */
+section:not(#hero) {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+section.section-visible {
+    display: block;
+    opacity: 1;
+}
+
+footer {
+    display: none;
+}
+
+body.content-visible footer {
+    display: block;
 }
 
 @keyframes spin {
@@ -162,7 +183,7 @@ nav {
     text-transform: uppercase;
     letter-spacing: 4px;
     margin-bottom: 1rem;
-    color: var(--text-secondary);
+    color: var(--accent-burgundy);
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 1s forwards 0.5s;
@@ -173,6 +194,7 @@ nav {
     font-size: clamp(3rem, 10vw, 6rem);
     font-weight: 700;
     margin-bottom: 1.5rem;
+    color: var(--accent-burgundy);
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 1s forwards 0.7s;
