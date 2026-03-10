@@ -236,56 +236,6 @@ nav {
     color: var(--bg-color);
 }
 
-.scroll-indicator {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--text-secondary);
-}
-
-.mouse {
-    width: 20px;
-    height: 35px;
-    border: 2px solid var(--text-secondary);
-    border-radius: 20px;
-    position: relative;
-}
-
-.mouse::before {
-    content: '';
-    width: 2px;
-    height: 6px;
-    background: var(--text-secondary);
-    position: absolute;
-    top: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: scrollMouse 2s infinite;
-}
-
-@keyframes scrollMouse {
-    0% {
-        opacity: 0;
-        top: 5px;
-    }
-
-    30% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-        top: 20px;
-    }
-}
 
 @keyframes fadeInUp {
     to {
