@@ -65,9 +65,9 @@ section:not(#hero) {
     transition: opacity 0.8s ease;
 }
 
-section.section-visible {
-    display: block;
-    opacity: 1;
+body.content-visible section.section-visible {
+    display: block !important;
+    opacity: 1 !important;
 }
 
 footer {

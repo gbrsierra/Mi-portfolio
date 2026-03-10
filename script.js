@@ -156,34 +156,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function resetToHome() {
+        console.log("Resetting to home view...");
         document.body.classList.remove('content-visible');
         const sections = document.querySelectorAll('section:not(#hero)');
         sections.forEach(s => {
             s.classList.remove('section-visible');
             s.style.opacity = '0';
+            s.style.display = 'none';
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
         updateActiveNavLink('hero');
     }
 
     function showSection(id) {
+        console.log("Attempting to show section:", id);
         const section = document.getElementById(id);
         if (section) {
+            // Activar visualización global
             document.body.classList.add('content-visible');
+
+            // Limpiar otras secciones
             const sections = document.querySelectorAll('section:not(#hero)');
             sections.forEach(s => {
                 if (s.id !== id) {
                     s.classList.remove('section-visible');
                     s.style.opacity = '0';
+                    s.style.display = 'none';
                 }
             });
 
+            // Preparar y mostrar sección destino
+            section.style.display = 'block';
             section.classList.add('section-visible');
+
+            // Pequeño retardo para asegurar que display:block se procese antes de la opacidad
             setTimeout(() => {
                 section.style.opacity = '1';
+                console.log("Scrolling to:", id);
                 section.scrollIntoView({ behavior: 'smooth' });
             }, 50);
+
             updateActiveNavLink(id);
+        } else {
+            console.error("Section not found:", id);
         }
     }
 
