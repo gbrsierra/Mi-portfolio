@@ -39,7 +39,21 @@ document.addEventListener('DOMContentLoaded', () => {
         renderGallery(filteredPhotos);
         setupEventListeners();
         setupAdminListeners();
+        checkAdminAccess();
         hideLoader();
+    }
+
+    function checkAdminAccess() {
+        const isLocal = window.location.hostname === 'localhost' ||
+            window.location.hostname === '127.0.0.1';
+
+        if (isLocal) {
+            console.log("Local environment detected. Enabling admin button.");
+            if (openAdminBtn) openAdminBtn.style.display = 'flex';
+        } else {
+            console.log("Production environment. Admin button hidden.");
+            if (openAdminBtn) openAdminBtn.style.display = 'none';
+        }
     }
 
     // --- Core Functions ---

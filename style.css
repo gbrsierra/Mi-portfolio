@@ -683,7 +683,8 @@ footer p {
     background-color: var(--text-primary);
     color: var(--bg-color);
     font-size: 2rem;
-    display: flex;
+    display: none;
+    /* Oculto por defecto */
     justify-content: center;
     align-items: center;
     border: none;
