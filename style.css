@@ -952,3 +952,93 @@ footer p {
         -webkit-overflow-scrolling: touch;
     }
 }
+
+/* ============================================
+   LANDSCAPE MODE EN MÓVIL
+   Al girar el móvil en horizontal, la foto
+   ocupa toda la pantalla y el nombre es pequeño
+   ============================================ */
+@media (max-width: 900px) and (orientation: landscape) {
+
+    /* El lightbox activo ocupa toda la pantalla sin padding */
+    .lightbox.active {
+        padding: 0;
+        align-items: stretch;
+    }
+
+    /* Distribución en fila: imagen a la izquierda, detalles a la derecha */
+    .lightbox-content {
+        flex-direction: row;
+        max-width: 100%;
+        max-height: 100%;
+        width: 100%;
+        height: 100%;
+        align-items: stretch;
+    }
+
+    /* La imagen ocupa todo el alto disponible */
+    .lightbox-image-container {
+        flex: 1;
+        height: 100%;
+        padding: 0;
+    }
+
+    .lightbox-image-container img {
+        max-height: 100vh;
+        max-width: 100%;
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    /* Panel de detalles estrecho a la derecha */
+    .lightbox-details {
+        width: 180px;
+        flex-shrink: 0;
+        padding: 0.75rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow-y: auto;
+        background: rgba(0, 0, 0, 0.6);
+        text-align: left;
+    }
+
+    /* Título de la foto más pequeño en landscape */
+    .lightbox-details h3 {
+        font-size: 0.95rem;
+        margin-bottom: 0.3rem;
+        line-height: 1.3;
+    }
+
+    /* Localización y fecha más compactas */
+    .lightbox-details p {
+        font-size: 0.7rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* EXIF compacto */
+    .exif-data {
+        flex-direction: column;
+        gap: 6px;
+        font-size: 0.65rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid var(--accent-dim);
+    }
+
+    /* Botón cerrar reposicionado para landscape */
+    .close-lightbox {
+        top: 8px;
+        right: 12px;
+        font-size: 2rem;
+    }
+
+    /* Flechas de navegación centradas verticalmente */
+    .prev-photo {
+        left: 5px;
+    }
+
+    .next-photo {
+        right: 190px;
+    }
+}
