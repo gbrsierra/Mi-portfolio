@@ -230,12 +230,14 @@ document.addEventListener('DOMContentLoaded', () => {
             section.style.display = 'block';
             section.classList.add('section-visible');
 
-            // Pequeño retardo para asegurar que display:block se procese antes de la opacidad
+            // Dar tiempo al navegador a refluir (especialmente importante en iOS Safari)
+            // y luego hacer scroll manualmente con window.scrollTo (más fiable que scrollIntoView en iOS)
             setTimeout(() => {
                 section.style.opacity = '1';
-                console.log("Scrolling to:", id);
-                section.scrollIntoView({ behavior: 'smooth' });
-            }, 50);
+                const headerHeight = 80;
+                const top = section.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                window.scrollTo({ top: top, behavior: 'smooth' });
+            }, 150);
 
             updateActiveNavLink(id);
         } else {

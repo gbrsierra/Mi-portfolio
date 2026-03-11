@@ -34,7 +34,9 @@ body {
     color: var(--text-primary);
     font-family: var(--font-main);
     line-height: 1.6;
-    overflow-x: hidden;
+    /* NOTE: overflow-x:hidden on body breaks scrolling on iOS Safari.
+       Using clip instead — supported iOS 15.4+ — avoids that bug. */
+    overflow-x: clip;
 }
 
 .container {
@@ -811,7 +813,6 @@ footer p {
 
 /* --- Mobile Nav Overlay --- */
 .nav-overlay {
-    display: none;
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
@@ -819,12 +820,14 @@ footer p {
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .nav-overlay.active {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
 }
 
@@ -886,11 +889,6 @@ footer p {
 
     .nav-link::after {
         display: none;
-    }
-
-    /* Nav overlay visible on mobile */
-    .nav-overlay {
-        display: block;
     }
 
     .gallery-grid {
