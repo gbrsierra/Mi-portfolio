@@ -142,9 +142,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Mobile Menu
+        const navOverlay = document.getElementById('nav-overlay');
+
+        function openMobileMenu() {
+            navLinks.classList.add('active');
+            mobileMenu.classList.add('active');
+            navOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            navLinks.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            navOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
         mobileMenu.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
+            if (navLinks.classList.contains('active')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+
+        // Close mobile menu when clicking the overlay
+        navOverlay.addEventListener('click', closeMobileMenu);
+
+        // Close mobile menu when clicking a nav link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
         });
 
         // Navigation for Section Visibility
