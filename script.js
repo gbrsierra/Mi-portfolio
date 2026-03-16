@@ -82,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="item-overlay">
                     <div class="item-info">
                         <h3>${photo.title}</h3>
-                        <p>${photo.category} &bull; ${photo.location}</p>
                     </div>
                 </div>
             `;
