@@ -293,10 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('photo-location').textContent = photo.location;
             document.getElementById('photo-date').textContent = photo.date;
 
-            // EXIF
-            document.getElementById('exif-camera').textContent = photo.exif.camera;
-            document.getElementById('exif-lens').textContent = photo.exif.lens;
-            document.getElementById('exif-settings').textContent = photo.exif.settings;
+
 
             lightboxImg.onload = () => {
                 lightboxImg.style.opacity = '1';
