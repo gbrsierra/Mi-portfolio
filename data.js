@@ -140,6 +140,56 @@ const portfolioData = {
             date: "Febrero 2023",
             exif: { camera: "", lens: "", settings: "" }
         },
+                {
+            id: 1773838177,
+            title: "Meloncillo",
+            category: "fauna",
+            src: "images/1773838177_GSS_04-09-24 168.jpeg",
+            thumb: "images/1773838177_GSS_04-09-24 168.jpeg",
+            location: "Cachorrilla-Cáceres",
+            date: "Septiembre 2024",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
+                {
+            id: 1773838229,
+            title: "Meloncillo",
+            category: "fauna",
+            src: "images/1773838229_GSS_04-09-24 170.jpeg",
+            thumb: "images/1773838229_GSS_04-09-24 170.jpeg",
+            location: "Cachorrilla-Cáceres",
+            date: "Septiembre 2024",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
+                {
+            id: 1773838273,
+            title: "Zorro",
+            category: "fauna",
+            src: "images/1773838273_GSS_04-09-24 174.jpeg",
+            thumb: "images/1773838273_GSS_04-09-24 174.jpeg",
+            location: "Cachorrilla-Cáceres",
+            date: "Septiembre 2024",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
+                {
+            id: 1773838314,
+            title: "Zorro",
+            category: "fauna",
+            src: "images/1773838314_GSS_04-09-24 175.jpeg",
+            thumb: "images/1773838314_GSS_04-09-24 175.jpeg",
+            location: "Cachorrilla-Cáceres",
+            date: "Septiembre 2024",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
+                {
+            id: 1773838369,
+            title: "Ciervo",
+            category: "fauna",
+            src: "images/1773838369_GSS_10-03-24 64.jpeg",
+            thumb: "images/1773838369_GSS_10-03-24 64.jpeg",
+            location: "Cachorrilla-Cáceres",
+            date: "Marzo 2024",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
         // --- Añade tus fotos debajo de esta línea siguiendo el formato anterior ---
     ]
 };
