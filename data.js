@@ -190,6 +190,96 @@ const portfolioData = {
             date: "Marzo 2024",
             exif: { camera: "-", lens: "-", settings: "-" }
         },
+                {
+            id: 1773846214,
+            title: "Liebre",
+            category: "fauna",
+            src: "images/1773846214_GSS_10-06-23 269.jpeg",
+            thumb: "images/1773846214_GSS_10-06-23 269.jpeg",
+            location: "Pescueza-Cáceres",
+            date: "Junio 2023",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
+                {
+            id: 1773846258,
+            title: "Liebre",
+            category: "fauna",
+            src: "images/1773846258_GSS_10-06-23 272.jpeg",
+            thumb: "images/1773846258_GSS_10-06-23 272.jpeg",
+            location: "Pescueza- Cáceres",
+            date: "Junio 2023",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
+                {
+            id: 1773846313,
+            title: "Conejo",
+            category: "fauna",
+            src: "images/1773846313_GSS_12-01-21 665.jpeg",
+            thumb: "images/1773846313_GSS_12-01-21 665.jpeg",
+            location: "Getafe-Madrid",
+            date: "Enero 2021",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
+                {
+            id: 1773846360,
+            title: "Liebre",
+            category: "fauna",
+            src: "images/1773846360_GSS_13-01-23 348.jpeg",
+            thumb: "images/1773846360_GSS_13-01-23 348.jpeg",
+            location: "Pescueza-Cáceres",
+            date: "Enero 2023",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
+                {
+            id: 1773846406,
+            title: "Ciervo",
+            category: "fauna",
+            src: "images/1773846406_GSS_14-09-25 4.jpeg",
+            thumb: "images/1773846406_GSS_14-09-25 4.jpeg",
+            location: "Pescueza-Cáceres",
+            date: "Septiembre 2025",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
+                {
+            id: 1773846498,
+            title: "Zorro",
+            category: "fauna",
+            src: "images/1773846498_GSS_21-04-24 108.jpeg",
+            thumb: "images/1773846498_GSS_21-04-24 108.jpeg",
+            location: "Cachorrilla-Cáceres",
+            date: "Abril 2024",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
+                {
+            id: 1773846554,
+            title: "Zorro",
+            category: "fauna",
+            src: "images/1773846554_GSS_21-04-24 105.jpeg",
+            thumb: "images/1773846554_GSS_21-04-24 105.jpeg",
+            location: "Cachorrilla-Cáceres",
+            date: "Abril 2024",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
+                {
+            id: 1773846615,
+            title: "Cabra montés",
+            category: "fauna",
+            src: "images/1773846615_GSS_21-11-22 361.jpeg",
+            thumb: "images/1773846615_GSS_21-11-22 361.jpeg",
+            location: "Madrid",
+            date: "Diciembre 2022",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
+                {
+            id: 1773846897,
+            title: "Ciervo",
+            category: "fauna",
+            src: "images/1773846897_GSS_30-09-23.jpeg",
+            thumb: "images/1773846897_GSS_30-09-23.jpeg",
+            location: "Cachorrilla-Cáceres",
+            date: "Septiembre 2023",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
         // --- Añade tus fotos debajo de esta línea siguiendo el formato anterior ---
     ]
 };
