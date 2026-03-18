@@ -6,6 +6,26 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- State Management ---
     let currentPhotoIndex = 0;
+
+    // Helper to parse "Month Year" format into numerical sortable value (e.g. "Marzo 2026" -> 202603)
+    function getPhotoDateValue(dateStr) {
+        if (!dateStr || dateStr === "-") return 0;
+        const monthNames = {
+            "enero": 1, "febrero": 2, "marzo": 3, "abril": 4, "mayo": 5, "junio": 6,
+            "julio": 7, "agosto": 8, "septiembre": 9, "octubre": 10, "noviembre": 11, "diciembre": 12
+        };
+        const parts = dateStr.trim().toLowerCase().split(/\s+/);
+        if (parts.length >= 2) {
+            const month = monthNames[parts[0]] || parseInt(parts[0], 10) || 0;
+            const year = parseInt(parts[parts.length - 1], 10) || 0;
+            return year * 100 + month;
+        }
+        return 0;
+    }
+
+    // Sort photos from most recent to oldest
+    portfolioData.photos.sort((a, b) => getPhotoDateValue(b.date) - getPhotoDateValue(a.date));
+
     let filteredPhotos = [...portfolioData.photos];
 
     // --- DOM Elements ---
