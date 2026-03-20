@@ -280,6 +280,46 @@ const portfolioData = {
             date: "Septiembre 2023",
             exif: { camera: "-", lens: "-", settings: "-" }
         },
+                {
+            id: 1774027062,
+            title: "Cogujada",
+            category: "aves",
+            src: "images/1774027061_GSS_20-05-25 46.jpeg",
+            thumb: "images/1774027061_GSS_20-05-25 46.jpeg",
+            location: "Desconocido",
+            date: "Mayo 2025",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
+                {
+            id: 1774027103,
+            title: "Papamoscas cerrojillo",
+            category: "aves",
+            src: "images/1774027103_GSS_26-10-2025(24).jpeg",
+            thumb: "images/1774027103_GSS_26-10-2025(24).jpeg",
+            location: "Desconocido",
+            date: "Octubre 2025",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
+                {
+            id: 1774027172,
+            title: "Busardo ratonero",
+            category: "aves",
+            src: "images/1774027172_GSS_04-03-2026(88) (1).jpg",
+            thumb: "images/1774027172_GSS_04-03-2026(88) (1).jpg",
+            location: "Desconocido",
+            date: "Marzo 2026",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
+                {
+            id: 1774027266,
+            title: "Busardo ratonero",
+            category: "aves",
+            src: "images/1774027266_GSS_04-03-2026(08).jpg",
+            thumb: "images/1774027266_GSS_04-03-2026(08).jpg",
+            location: "Desconocido",
+            date: "Marzo 2026",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
         // --- Añade tus fotos debajo de esta línea siguiendo el formato anterior ---
     ]
 };
