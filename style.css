@@ -735,36 +735,28 @@ footer p {
     pointer-events: none;
 }
 
-#image-preview {
-    max-width: 100%;
-    max-height: 200px;
-    border-radius: 4px;
-    margin-top: 1rem;
-}
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-bottom: 1.5rem;
-}
-
-/* --- Watermark Editor Styles --- */
 .preview-container {
     position: relative;
     width: 100%;
-    margin-top: 1rem;
-    border-radius: 4px;
+    max-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111;
+    border-radius: 12px;
     overflow: hidden;
-    background: #000;
-    line-height: 0;
+    margin-bottom: 2rem;
+    cursor: default;
     user-select: none;
 }
 
 #image-preview {
     max-width: 100%;
+    max-height: 80vh;
     height: auto;
+    width: auto;
     display: block;
+    object-fit: contain;
 }
 
 .watermark-overlay {

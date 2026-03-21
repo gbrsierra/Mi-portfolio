@@ -470,7 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 imgPreview.src = reader.result;
                 previewContainer.hidden = false;
                 wmEditor.hidden = false;
-                dropText.hidden = true;
+                document.getElementById('drop-zone').hidden = true;
                 
                 // Expand modal for large workspace
                 document.querySelector('.admin-content').classList.add('modal-expanded');
@@ -516,6 +516,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Dragging Logic
         watermarkOverlay.addEventListener('mousedown', (e) => {
+            e.stopPropagation(); // Prevents bubbling to container or other elements
             isDragging = true;
             watermarkOverlay.classList.add('active');
             
