@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Helper to parse "Month Year" format into numerical sortable value (e.g. "Marzo 2026" -> 202603)
     function getPhotoDateValue(dateStr) {
         if (!dateStr || dateStr === "-") return 0;
+        
+        // Handle "Reciente" or similar by giving it a very high value
+        if (dateStr.toLowerCase().trim() === "reciente") return 999999;
+
         const monthNames = {
             "enero": 1, "febrero": 2, "marzo": 3, "abril": 4, "mayo": 5, "junio": 6,
             "julio": 7, "agosto": 8, "septiembre": 9, "octubre": 10, "noviembre": 11, "diciembre": 12
@@ -23,8 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return 0;
     }
 
-    // Sort photos from most recent to oldest
-    portfolioData.photos.sort((a, b) => getPhotoDateValue(b.date) - getPhotoDateValue(a.date));
+    // Sort photos from most recent to oldest (using date and ID as tie-breaker)
+    portfolioData.photos.sort((a, b) => {
+        const dateDiff = getPhotoDateValue(b.date) - getPhotoDateValue(a.date);
+        if (dateDiff !== 0) return dateDiff;
+        // If same date, sort by ID descending (newer uploads first)
+        return (b.id || 0) - (a.id || 0);
+    });
 
     let filteredPhotos = [...portfolioData.photos];
 
