@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderGallery(filteredPhotos);
         setupEventListeners();
         setupAdminListeners();
+        setupWatermarkLogic();
         checkAdminAccess();
         hideLoader();
     }
@@ -403,18 +404,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        function handleFiles(file) {
-            if (file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onloadend = function () {
-                    imagePreview.src = reader.result;
-                    imagePreview.hidden = false;
-                    dropText.hidden = true;
-                }
-            }
-        }
-
         // Form Submit
         uploadForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -424,9 +413,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const formData = new FormData(uploadForm);
             const submitBtn = document.getElementById('upload-submit-btn');
-            submitBtn.textContent = 'Subiendo...';
+            submitBtn.textContent = 'Procesando imagen...';
             submitBtn.disabled = true;
 
             try {
@@ -434,6 +422,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (window.location.protocol === 'file:') {
                     throw new Error('Debes abrir el portfolio usando el archivo "iniciar_portfolio.command" para poder subir fotos. (El protocolo file:// bloquea las subidas por seguridad).');
                 }
+
+                // --- Generate Watermarked Image ---
+                const watermarkedBlob = await generateWatermarkedBlob();
+                
+                const formData = new FormData(uploadForm);
+                // Replace the original image with the processed one
+                formData.set('image', watermarkedBlob, imageInput.files[0].name);
+
+                submitBtn.textContent = 'Subiendo...';
 
                 const response = await fetch('/upload', {
                     method: 'POST',
@@ -455,6 +452,154 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.textContent = 'Subir y Guardar';
                 submitBtn.disabled = false;
             }
+        });
+    }
+
+    function handleFiles(file) {
+        if (file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onloadend = function () {
+                const imgPreview = document.getElementById('image-preview');
+                const previewContainer = document.getElementById('preview-container');
+                const wmEditor = document.getElementById('watermark-editor');
+                const dropText = document.querySelector('.drop-text');
+
+                imgPreview.src = reader.result;
+                previewContainer.hidden = false;
+                wmEditor.hidden = false;
+                dropText.hidden = true;
+                
+                // Reset WM position to center
+                const overlay = document.getElementById('watermark-overlay');
+                overlay.style.left = '50%';
+                overlay.style.top = '50%';
+            }
+        }
+    }
+
+    // --- Watermark Editor Logic ---
+    function setupWatermarkLogic() {
+        const previewContainer = document.getElementById('preview-container');
+        const watermarkOverlay = document.getElementById('watermark-overlay');
+        const wmText = document.getElementById('wm-text');
+        const wmFont = document.getElementById('wm-font');
+        const wmColor = document.getElementById('wm-color');
+        const wmSize = document.getElementById('wm-size');
+        const wmOpacity = document.getElementById('wm-opacity');
+
+        // State for positioning (percentages 0-100)
+        let wmX = 50; 
+        let wmY = 50;
+        let isDragging = false;
+        let dragStartX, dragStartY;
+
+        // Update preview based on inputs
+        function updateWMPreview() {
+            watermarkOverlay.textContent = wmText.value;
+            watermarkOverlay.style.fontFamily = wmFont.value;
+            watermarkOverlay.style.color = wmColor.value;
+            watermarkOverlay.style.fontSize = wmSize.value + 'px';
+            watermarkOverlay.style.opacity = wmOpacity.value;
+            watermarkOverlay.style.left = wmX + '%';
+            watermarkOverlay.style.top = wmY + '%';
+        }
+
+        [wmText, wmFont, wmColor, wmSize, wmOpacity].forEach(el => {
+            el.addEventListener('input', updateWMPreview);
+        });
+
+        // Dragging Logic
+        watermarkOverlay.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            watermarkOverlay.classList.add('active');
+            
+            // Calculate offset relative to the watermark absolute position
+            const rect = watermarkOverlay.getBoundingClientRect();
+            dragStartX = e.clientX - rect.left;
+            dragStartY = e.clientY - rect.top;
+            
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            
+            const rect = previewContainer.getBoundingClientRect();
+            
+            // New position relative to container
+            let x = e.clientX - rect.left - dragStartX + (watermarkOverlay.offsetWidth / 2);
+            let y = e.clientY - rect.top - dragStartY + (watermarkOverlay.offsetHeight / 2);
+
+            // Convert to percentages for responsive preview
+            wmX = Math.max(0, Math.min(100, (x / rect.width) * 100));
+            wmY = Math.max(0, Math.min(100, (y / rect.height) * 100));
+
+            watermarkOverlay.style.left = wmX + '%';
+            watermarkOverlay.style.top = wmY + '%';
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                watermarkOverlay.classList.remove('active');
+            }
+        });
+
+        // Initialize state
+        updateWMPreview();
+
+        // Expose state for processing via a global-ish function context
+        window.getWatermarkState = () => ({
+            text: wmText.value,
+            font: wmFont.value,
+            color: wmColor.value,
+            size: parseInt(wmSize.value),
+            opacity: parseFloat(wmOpacity.value),
+            xPercent: wmX,
+            yPercent: wmY
+        });
+    }
+
+    async function generateWatermarkedBlob() {
+        const canvas = document.getElementById('processing-canvas');
+        const ctx = canvas.getContext('2d');
+        const img = document.getElementById('image-preview');
+        const state = window.getWatermarkState();
+
+        // Use original image dimensions for high quality
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+
+        // Draw base image
+        ctx.drawImage(img, 0, 0);
+
+        // Configure text style
+        // Scale font size proportionally to image resolution
+        const ratio = img.naturalWidth / img.clientWidth;
+        const finalFontSize = state.size * ratio;
+
+        ctx.font = `${finalFontSize}px ${state.font}`;
+        ctx.fillStyle = state.color;
+        ctx.globalAlpha = state.opacity;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        // Add subtle shadow for professional look
+        ctx.shadowColor = 'rgba(0,0,0,0.5)';
+        ctx.shadowBlur = 4 * ratio;
+        ctx.shadowOffsetX = 2 * ratio;
+        ctx.shadowOffsetY = 2 * ratio;
+
+        // Calculate position in natural coordinates
+        const x = (state.xPercent / 100) * canvas.width;
+        const y = (state.yPercent / 100) * canvas.height;
+
+        // Draw text
+        ctx.fillText(state.text, x, y);
+
+        return new Promise(resolve => {
+            canvas.toBlob(resolve, 'image/jpeg', 0.92);
         });
     }
 });

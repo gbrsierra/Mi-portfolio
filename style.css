@@ -743,6 +743,82 @@ footer p {
     margin-bottom: 1.5rem;
 }
 
+/* --- Watermark Editor Styles --- */
+.preview-container {
+    position: relative;
+    width: 100%;
+    margin-top: 1rem;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #000;
+    line-height: 0;
+    user-select: none;
+}
+
+#image-preview {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.watermark-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    padding: 10px;
+    cursor: move;
+    white-space: nowrap;
+    user-select: none;
+    z-index: 10;
+    transition: outline 0.2s ease;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.watermark-overlay:hover {
+    outline: 1px dashed rgba(255, 255, 255, 0.5);
+}
+
+.watermark-editor {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 1px solid var(--accent-dim);
+}
+
+.editor-subtitle {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.editor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.size-control {
+    margin-top: 15px;
+}
+
+.drag-hint {
+    font-size: 0.75rem;
+    color: #d4af37;
+    margin-top: 10px;
+    font-style: italic;
+    text-align: center;
+}
+
+.watermark-overlay.active {
+    outline: 2px solid #d4af37;
+}
+
+
 .form-group input,
 .form-group select {
     width: 100%;

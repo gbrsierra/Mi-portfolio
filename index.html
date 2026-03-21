@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;700&family=Dancing+Script:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -156,12 +156,49 @@
         <button class="close-admin close-lightbox">&times;</button>
         <div class="admin-content">
             <h2 class="admin-title">Subir Nueva Foto</h2>
-            <form id="upload-form" class="upload-form">
                 <div class="drop-zone" id="drop-zone">
                     <p class="drop-text">Arrastra y suelta tu foto aquí<br>o haz clic para seleccionar</p>
                     <input type="file" id="image-input" name="image" accept="image/*" required hidden>
-                    <img id="image-preview" src="" alt="Vista previa" hidden>
+                    <div id="preview-container" class="preview-container" hidden>
+                        <img id="image-preview" src="" alt="Vista previa">
+                        <div id="watermark-overlay" class="watermark-overlay">Gabriel Sierra</div>
+                    </div>
                 </div>
+
+                <!-- Watermark Editor Controls -->
+                <div id="watermark-editor" class="watermark-editor" hidden>
+                    <h3 class="editor-subtitle">Personalizar Marca de Agua</h3>
+                    <div class="editor-grid">
+                        <div class="form-group">
+                            <label for="wm-text">Texto</label>
+                            <input type="text" id="wm-text" value="Gabriel Sierra">
+                        </div>
+                        <div class="form-group">
+                            <label for="wm-font">Fuente</label>
+                            <select id="wm-font">
+                                <option value="'Playfair Display', serif">Playfair Display</option>
+                                <option value="'Inter', sans-serif">Inter</option>
+                                <option value="'Montserrat', sans-serif">Montserrat</option>
+                                <option value="'Dancing Script', cursive">Dancing Script</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="wm-color">Color</label>
+                            <input type="color" id="wm-color" value="#ffffff">
+                        </div>
+                        <div class="form-group">
+                            <label for="wm-opacity">Opacidad</label>
+                            <input type="range" id="wm-opacity" min="0.1" max="1" step="0.1" value="0.8">
+                        </div>
+                    </div>
+                    <div class="form-group size-control">
+                        <label for="wm-size">Tamaño</label>
+                        <input type="range" id="wm-size" min="10" max="150" value="40">
+                    </div>
+                    <p class="drag-hint">Pica y arrastra la firma para moverla sobre la foto</p>
+                </div>
+
+                <canvas id="processing-canvas" style="display:none;"></canvas>
                 <div class="form-grid">
                     <div class="form-group">
                         <input type="text" name="title" placeholder="Título de la foto" required>
