@@ -19,6 +19,16 @@ const portfolioData = {
      * Importante: Guarda tus fotos en la carpeta 'images/' de este proyecto.
      */
     photos: [
+                {
+            id: 1774105956,
+            title: "Amanecer en Getafe",
+            category: "nocturnas",
+            src: "images/1774105956_GSS_06-10-25 3.jpeg",
+            thumb: "images/1774105956_GSS_06-10-25 3.jpeg",
+            location: "Desconocido",
+            date: "Octubre de 2025",
+            exif: { camera: "-", lens: "-", settings: "-" }
+        },
         // --- Añade tus fotos debajo de esta línea siguiendo el formato anterior ---
         {
             id: 1774027266,

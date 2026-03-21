@@ -686,20 +686,14 @@ footer p {
 
 .admin-content {
     background: var(--bg-surface);
-    padding: 2.5rem;
+    padding: 1.5rem; /* Reduced from 2.5rem */
     border-radius: 12px;
-    width: 90%;
-    max-width: 600px;
-    max-height: 90vh;
+    width: 95%;
+    max-width: 550px; /* Slightly narrower */
+    max-height: 95vh;
     overflow-y: auto;
     position: relative;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-    transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.admin-content.modal-expanded {
-    max-width: 1200px;
-    width: 95%;
 }
 
 .admin-title {
@@ -711,17 +705,17 @@ footer p {
 .drop-zone {
     border: 2px dashed var(--accent-dim);
     border-radius: 8px;
-    padding: 2rem;
+    padding: 1rem; /* Reduced */
     text-align: center;
     cursor: pointer;
     transition: var(--transition-smooth);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem; /* Reduced from 2rem */
     background: rgba(255, 255, 255, 0.02);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 150px;
+    min-height: 100px; /* Reduced from 150px */
 }
 
 .drop-zone:hover,
@@ -733,89 +727,43 @@ footer p {
 .drop-text {
     color: var(--text-secondary);
     pointer-events: none;
+    font-size: 0.9rem; /* Slightly smaller */
 }
 
 .preview-container {
     position: relative;
     width: 100%;
-    max-height: 80vh;
+    max-height: 200px; /* Reduced from 80vh */
     display: flex;
     justify-content: center;
     align-items: center;
     background: #111;
-    border-radius: 12px;
+    border-radius: 8px;
     overflow: hidden;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem; /* Reduced from 2rem */
     cursor: default;
     user-select: none;
 }
 
 #image-preview {
     max-width: 100%;
-    max-height: 80vh;
+    max-height: 200px; /* Reduced */
     height: auto;
     width: auto;
     display: block;
     object-fit: contain;
 }
 
-.watermark-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    padding: 10px;
-    cursor: move;
-    white-space: nowrap;
-    user-select: none;
-    z-index: 10;
-    transition: outline 0.2s ease;
-    text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-}
-
-.watermark-overlay:hover {
-    outline: 1px dashed rgba(255, 255, 255, 0.5);
-}
-
-.watermark-editor {
-    background: rgba(255, 255, 255, 0.03);
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    border: 1px solid var(--accent-dim);
-}
-
-.editor-subtitle {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 1.2rem;
-    color: var(--text-secondary);
-}
-
-.editor-grid {
+.form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
+    margin-bottom: 1rem;
 }
 
-.size-control {
-    margin-top: 15px;
+.form-grid > .form-group:last-child {
+    grid-column: span 2;
 }
-
-.drag-hint {
-    font-size: 0.75rem;
-    color: #d4af37;
-    margin-top: 10px;
-    font-style: italic;
-    text-align: center;
-}
-
-.watermark-overlay.active {
-    outline: 2px solid #d4af37;
-}
-
 
 .form-group input,
 .form-group select {
