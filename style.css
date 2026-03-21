@@ -694,6 +694,12 @@ footer p {
     overflow-y: auto;
     position: relative;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.admin-content.modal-expanded {
+    max-width: 1200px;
+    width: 95%;
 }
 
 .admin-title {

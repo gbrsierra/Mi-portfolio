@@ -359,6 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
         closeAdminBtn.addEventListener('click', () => {
             adminModal.classList.remove('active');
             document.body.style.overflow = 'auto';
+            document.querySelector('.admin-content').classList.remove('modal-expanded');
         });
 
         // Close on background click
@@ -366,6 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target === adminModal) {
                 adminModal.classList.remove('active');
                 document.body.style.overflow = 'auto';
+                document.querySelector('.admin-content').classList.remove('modal-expanded'); 
             }
         });
 
@@ -469,6 +471,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 previewContainer.hidden = false;
                 wmEditor.hidden = false;
                 dropText.hidden = true;
+                
+                // Expand modal for large workspace
+                document.querySelector('.admin-content').classList.add('modal-expanded');
                 
                 // Reset WM position to center
                 const overlay = document.getElementById('watermark-overlay');
